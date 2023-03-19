@@ -11,6 +11,7 @@ import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/logo.png';
 
+
 const Home = () => {
     const menus = [
         { name: "dashboard", link: "/", icon: MdOutlineDashboard },
@@ -24,7 +25,7 @@ const Home = () => {
     ];
     const [open, setOpen] = useState(true);
     return (
-        <section className="flex gap-6 z-[100]">
+        <section className="flex gap-6 z-[100] w-60 static top-0 left-0">
             <div
                 className={` bg-slate-100 min-h-screen ${open ? "w-60" : "w-16"
                     } duration-500 text-gray-900 px-4`}

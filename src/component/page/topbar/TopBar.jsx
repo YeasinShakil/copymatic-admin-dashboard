@@ -34,7 +34,7 @@ const TopBar = () => {
   
 
     return (
-        <div className=' w-[83%] absolute right-0 py-2 px-4'>
+        <div className=' w-[83%] bg-gray-100 right-0 py-2 px-4 fixed top-0 z-20'>
 
             <div className=' flex justify-between items-center'>
                 <div className=' flex gap-4'>
