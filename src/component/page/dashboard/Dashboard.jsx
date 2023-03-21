@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaHandSparkles, FaMicroblog, FaPhotoVideo, FaCartArrowDown } from 'react-icons/fa'
 import { BsArrowRightShort, BsQrCodeScan, BsMeta } from 'react-icons/bs'
 import { GrArticle } from 'react-icons/gr'
@@ -6,8 +6,10 @@ import { TbWriting, TbSocial } from 'react-icons/tb';
 import { ImParagraphLeft } from 'react-icons/im';
 import { SiWritedotas } from 'react-icons/si';
 import { FcAbout, FcFaq } from 'react-icons/fc';
+import noteContext from '../../../Context/noteContext';
 
 const Dashboard = () => {
+    const open = useContext(noteContext);
     const wordsGenerate = [
         { titel: 'Words Generated', description: '95210 words' },
         { titel: 'Items Generated', description: '1361 items' },
@@ -114,12 +116,12 @@ const Dashboard = () => {
         },
     ]
     return (
-        <div className='  flex flex-col absolute top-12 left-[18%] mt-4'>
+        <div className={`flex flex-col absolute top-12 ${open.open ? 'left-[18%]' : 'left-[7%]'} mt-4`}>
 
             <p className=' flex items-center text-2xl font-bold mb-4 text-gray-700'><span className='mr-2'><FaHandSparkles /></span>  Hey, let's create something amazing today!</p>
             <div className=' grid grid-cols-4 gap-8 mt-2 '>
                 {wordsGenerate.map((value, i) => (
-                    <div className=' w-[250px] bg-white px-4 py-2 rounded-sm'>
+                    <div className={`${open.open ? 'w-[250px]' : 'w-[285px]'} bg-white px-4 py-2 rounded-sm`}>
                         <h2 className=' text-gray-500 text-sm'>{value.titel}</h2>
                         <h2 className=' text-lg font-bold text-gray-700'>{value.description}</h2>
                     </div>
@@ -137,7 +139,7 @@ const Dashboard = () => {
             </div>
             <div className=' grid grid-cols-4 mt-4 gap-8'>
                 {popularTools.map((value, i) => (
-                    <div className='w-[250px] bg-white px-4 py-2 rounded-sm cursor-pointer'>
+                    <div className={`${open.open ? 'w-[250px]' : 'w-[285px]'} bg-white px-4 py-2 rounded-sm cursor-pointer`}>
                         <div>
                             <p className=''>{value.icon}</p>
                         </div>

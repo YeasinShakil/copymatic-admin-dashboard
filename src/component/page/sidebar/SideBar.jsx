@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { FiLayers } from "react-icons/fi";
@@ -10,6 +10,7 @@ import { AiOutlineUser, AiOutlineHeart, AiOutlineFileImage } from "react-icons/a
 import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from '../../../assets/logo.png';
+import noteContext from "../../../Context/noteContext";
 
 
 const Home = () => {
@@ -23,20 +24,23 @@ const Home = () => {
         { name: "Rewriter", link: "/", icon: TfiWrite, margin: true },
         { name: "Smart Editor", link: "/", icon: VscEditorLayout },
     ];
-    const [open, setOpen] = useState(true);
+    const open = useContext(noteContext);
+    
+    console.log(open)
+    const [active, setActive] = useState(false);
     return (
         <section className="flex gap-6 z-[100] w-60 static top-0 left-0">
             <div
-                className={` bg-slate-100 min-h-screen ${open ? "w-60" : "w-16"
+                className={` bg-slate-100 min-h-screen ${open.open ? "w-60" : "w-16"
                     } duration-500 text-gray-900 px-4`}
             >
                 <div className="py-3 flex justify-between">
-                    {open ? <img src={logo} className=' w-[70%]' alt="" /> : ''}
+                    {open.open ? <img src={logo} className=' w-[70%]' alt="" /> : ''}
 
                     <HiMenuAlt3
                         size={26}
                         className="cursor-pointer"
-                        onClick={() => setOpen(!open)}
+                        onClick={open.toggleMenu}
                     />
                 </div>
                 <div className="mt-4 flex flex-col gap-4 relative">
@@ -52,14 +56,14 @@ const Home = () => {
                                 style={{
                                     transitionDelay: `${i + 3}00ms`,
                                 }}
-                                className={`whitespace-pre duration-500 ${!open && "opacity-0 translate-x-28 overflow-hidden"
+                                className={`whitespace-pre duration-500 ${!open.open && "opacity-0 translate-x-28 overflow-hidden"
                                     }`}
                             >
                                 {menu?.name}
                             </h2>
                             <h2
-                                className={`${open && "hidden"
-                                    } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                                className={`${open.open && "hidden"
+                                    } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit z-30`}
                             >
                                 {menu?.name}
                             </h2>
