@@ -8,7 +8,7 @@ import { TfiWrite } from "react-icons/tfi";
 import { VscEditorLayout } from "react-icons/vsc";
 import { AiOutlineUser, AiOutlineHeart, AiOutlineFileImage } from "react-icons/ai";
 import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from '../../../assets/logo.png';
 import noteContext from "../../../Context/noteContext";
 
@@ -17,63 +17,77 @@ const Home = () => {
     const menus = [
         { name: "dashboard", link: "/", icon: MdOutlineDashboard },
         { name: "All Tools", link: "/tools", icon: FiLayers },
-        { name: "My content", link: "/", icon: BiBookContent },
-        { name: "Article Generator", link: "/", icon: RiArticleLine, margin: true },
-        { name: "Chat", link: "/", icon: FiMessageSquare },
-        { name: "Image Generator", link: "/", icon: AiOutlineFileImage },
-        { name: "Rewriter", link: "/", icon: TfiWrite, margin: true },
-        { name: "Smart Editor", link: "/", icon: VscEditorLayout },
+        { name: "My content", link: "/mycontent", icon: BiBookContent },
+        { name: "Article Generator", link: "/articlegenerator", icon: RiArticleLine, margin: true },
+        { name: "Chat", link: "/chat", icon: FiMessageSquare },
+        { name: "Image Generator", link: "/imagegenerator", icon: AiOutlineFileImage },
+        { name: "Rewriter", link: "/rewriter", icon: TfiWrite, margin: true },
+        { name: "Smart Editor", link: "/smarteditor", icon: VscEditorLayout },
+
+
+        { name: "dashboard", link: "/", icon: MdOutlineDashboard },
+        { name: "All Tools", link: "/tools", icon: FiLayers },
+        { name: "My content", link: "/mycontent", icon: BiBookContent },
+        { name: "Article Generator", link: "/articlegenerator", icon: RiArticleLine, margin: true },
+        { name: "Chat", link: "/chat", icon: FiMessageSquare },
+        { name: "Image Generator", link: "/imagegenerator", icon: AiOutlineFileImage },
+        { name: "Rewriter", link: "/rewriter", icon: TfiWrite, margin: true },
+        { name: "Smart Editor", link: "/smarteditor", icon: VscEditorLayout },
     ];
     const open = useContext(noteContext);
-    
-    console.log(open)
-    const [active, setActive] = useState(false);
+
+
     return (
-        <section className="flex gap-6 z-[100] w-60 static top-0 left-0">
-            <div
-                className={` bg-slate-100 min-h-screen ${open.open ? "w-60" : "w-16"
-                    } duration-500 text-gray-900 px-4`}
-            >
-                <div className="py-3 flex justify-between">
-                    {open.open ? <img src={logo} className=' w-[70%]' alt="" /> : ''}
+        <section className="flex gap-6 z-[100] w-60 fixed top-0 
+        ">
+            <div className=" ">
+                <div
+                    className={` bg-slate-100 ${open.open ? "w-60" : "w-20"
+                        } duration-500 text-gray-900 px-4 
+                        
+                        `}
+                >
+                    <div className="py-3 flex justify-between">
+                        {open.open ? <img src={logo} className=' w-[70%]' alt="" /> : ''}
 
-                    <HiMenuAlt3
-                        size={26}
-                        className="cursor-pointer"
-                        onClick={open.toggleMenu}
-                    />
-                </div>
-                <div className="mt-4 flex flex-col gap-4 relative">
-                    {menus?.map((menu, i) => (
-                        <Link
-                            to={menu?.link}
-                            key={i}
-                            className={` ${menu?.margin && "mt-5"
-                                } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
-                        >
-                            <div>{React.createElement(menu?.icon, { size: "20" })}</div>
-                            <h2
-                                style={{
-                                    transitionDelay: `${i + 3}00ms`,
-                                }}
-                                className={`whitespace-pre duration-500 ${!open.open && "opacity-0 translate-x-28 overflow-hidden"
-                                    }`}
-                            >
-                                {menu?.name}
-                            </h2>
-                            <h2
-                                className={`${open.open && "hidden"
-                                    } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit z-30`}
-                            >
-                                {menu?.name}
-                            </h2>
-                        </Link>
-                    ))}
-                    
-                </div>
+                        <HiMenuAlt3
+                            size={26}
+                            className="cursor-pointer"
+                            onClick={open.toggleMenu}
+                        />
+                    </div>
+                    <div className="mt-4 flex flex-col gap-4 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-blue-300 h-[100vh] overflow-y-auto hover:scrollbar-thumb-blue-700 scrollbar-thumb-rounded-full scrollbar-track-rounded-full ">
+                        {menus?.map((menu, i) => (
+                            <NavLink
+                                key={i}
+                                to={menu?.link}
 
-                {/* drop down */}
-                {/* <div className=" mt-10 inline-flex bg-white border rounded-md">
+                                className={` ${menu?.margin && "mt-5"
+                                    } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md `}
+                            >
+                                <div>{React.createElement(menu?.icon, { size: "20" })}</div>
+                                <h2
+                                    style={{
+                                        transitionDelay: `${i + 3}00ms`,
+                                    }}
+                                    className={`whitespace-pre duration-500 ${!open.open && "opacity-0 translate-x-28 overflow-hidden"
+                                        }`}
+                                >
+                                    {menu?.name}
+                                </h2>
+                                <h2
+                                    className={`${open.open && "hidden"
+                                        } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit z-30`}
+                                >
+                                    {menu?.name}
+                                </h2>
+                            </NavLink>
+                        ))}
+
+                    </div>
+
+                    {/* drop down */}
+                    {/* <div className=" mt-10 inline-flex bg-white border rounded-md">
                     <a
                         href="#"
                         className="px-4 py-2 text-sm text-gray-600 hover:text-gray-700 hover:bg-gray-50 rounded-l-md"
@@ -130,6 +144,7 @@ const Home = () => {
 
 
 
+                </div>
             </div>
         </section>
     );
