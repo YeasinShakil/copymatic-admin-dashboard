@@ -78,7 +78,9 @@ const TopBar = () => {
           <p className=' cursor-pointer text-lg' onClick={handleThemeSwitch}>{theme == 'dark' ? <MdNightlight /> : <HiOutlineSun />}</p>
           <p className=' cursor-pointer text-lg'><AiOutlineQuestionCircle /></p>
           <p className=' cursor-pointer text-lg'><GrAnnounce /></p>
-          <p className=' cursor-pointer text-lg'><FiMessageSquare /></p>
+          <p className=' cursor-pointer text-lg'>
+            <FiMessageSquare />
+            </p>
 
           {/* <p className=' cursor-pointer text-lg'><CgProfile /></p> */}
           <div className=' flex justify-center items-center cursor-pointer'>
